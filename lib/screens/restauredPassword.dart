@@ -52,8 +52,11 @@ class _RestauredpasswordState extends State<Restauredpassword> {
                   restauredPassword(emailControllerr.text);
                   Navigator.pushNamed(context, 'login');
                 } catch (e) {
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(const SnackBar(content: Text('Error')));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Error'),
+                    ),
+                  );
                 }
               },
               child: const Text('Enviar Correo'),

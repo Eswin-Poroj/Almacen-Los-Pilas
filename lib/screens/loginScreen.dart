@@ -221,6 +221,32 @@ class _LoginscreenState extends State<Loginscreen> {
                     Icons.phone,
                   ),
                 ),
+                const SizedBox(
+                  width: 20,
+                ),
+                IconButton(
+                  onPressed: () async {
+                    try {
+                      UserCredential credentialFacebook =
+                          await signInWithFacebook();
+                      if (credentialFacebook.user != null) {
+                        Navigator.pushNamed(context, 'home');
+                      }
+                    } on FirebaseAuthException catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(e.code),
+                        ),
+                      );
+                    }
+                  },
+                  icon: const Image(
+                    image: NetworkImage(
+                        'https://z-m-static.xx.fbcdn.net/rsrc.php/v3/yD/r/5D8s-GsHJlJ.png'),
+                    width: 30,
+                    height: 30,
+                  ),
+                ),
               ],
             )
           ],

@@ -46,17 +46,24 @@ Future<UserCredential> signInWithGoogleMov() async {
 }
 
 // Regitrarse con Google en web
+// Definimos la función futura asincrona
 Future<UserCredential> signInWithGoogleWeb() async {
   // Create a new provider
+  // Aquí se crea una nueva instancia de GoogleAuthProvider. Este objeto representa el proveedor de autenticación de Google que se utilizará para el inicio de sesión.
   GoogleAuthProvider googleProvider = GoogleAuthProvider();
 
+  // Esta línea agrega un alcance adicional al proveedor de autenticación de Google. El alcance 'https://www.googleapis.com/auth/contacts.readonly' permite acceder a los contactos del usuario de forma de solo lectura.
   googleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+
+  //Aquí se configuran parámetros personalizados para el proveedor de autenticación. En este caso, el parámetro 'login_hint' se establece con un valor de 'user@example.com', lo que puede ayudar a pre-rellenar el campo de correo electrónico en la interfaz de inicio de sesión de Google.
   googleProvider.setCustomParameters({'login_hint': 'user@example.com'});
 
   // Once signed in, return the UserCredential
+  // Esta línea intenta autenticar al usuario usando un popup de inicio de sesión proporcionado por Google. El método signInWithPopup de FirebaseAuth abre una ventana emergente para que el usuario se autentique. Una vez que el usuario se ha autenticado correctamente, la función retorna un objeto UserCredential, que contiene información sobre el usuario autenticado.
   return await FirebaseAuth.instance.signInWithPopup(googleProvider);
 
   // Or use signInWithRedirect
+  //Estas líneas comentadas representan una alternativa al método signInWithPopup. En lugar de usar una ventana emergente, se podría usar signInWithRedirect, que redirige al usuario a una página de inicio de sesión de Google. Esta opción es útil si se necesita manejar la autenticación en una página completa en lugar de un popup.
   // return await FirebaseAuth.instance.signInWithRedirect(googleProvider);
 }
 
@@ -78,4 +85,21 @@ Future<void> loginNumberPhone(String number) async {
   } on FirebaseAuthException catch (e) {
     print('Error en $e');
   }
+}
+
+// Registrar con Facebook
+Future<UserCredential> signInWithFacebook() async {
+  // Create a new provider
+  FacebookAuthProvider facebookProvider = FacebookAuthProvider();
+
+  facebookProvider.addScope('email');
+  facebookProvider.setCustomParameters({
+    'display': 'popup',
+  });
+
+  // Once signed in, return the UserCredential
+  return await FirebaseAuth.instance.signInWithPopup(facebookProvider);
+
+  // Or use signInWithRedirect
+  // return await FirebaseAuth.instance.signInWithRedirect(facebookProvider);
 }

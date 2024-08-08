@@ -30,6 +30,8 @@ flutter:
 
   assets:
     - asset/images/google.png
+    - asset/images/facebook.png
+    - asset/images/logoGoogle.jpg
   #   - images/a_dot_ham.jpeg
 
   

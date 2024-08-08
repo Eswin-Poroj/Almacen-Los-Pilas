@@ -239,9 +239,47 @@ class _RegistrerScreenState extends State<Registrerscreen> {
                     }
                   },
                   icon: const Image(
-                    image: AssetImage('asset/images/google.png'),
-                    width: 50,
-                    height: 50,
+                    image: NetworkImage(
+                        'https://pbs.twimg.com/profile_images/1311763847775125516/mvBRhlDs_400x400.jpg'),
+                    width: 30,
+                    height: 30,
+                  ),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'loginPhone');
+                  },
+                  icon: const Icon(
+                    Icons.phone,
+                  ),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                IconButton(
+                  onPressed: () async {
+                    try {
+                      UserCredential credentialFacebook =
+                          await signInWithFacebook();
+                      if (credentialFacebook.user != null) {
+                        Navigator.pushNamed(context, 'home');
+                      }
+                    } on FirebaseAuthException catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(e.code),
+                        ),
+                      );
+                    }
+                  },
+                  icon: const Image(
+                    image: NetworkImage(
+                        'https://z-m-static.xx.fbcdn.net/rsrc.php/v3/yD/r/5D8s-GsHJlJ.png'),
+                    width: 30,
+                    height: 30,
                   ),
                 ),
               ],
