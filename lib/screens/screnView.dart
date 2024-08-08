@@ -29,7 +29,7 @@ class Screnview extends StatelessWidget {
           ),
         ],
       ),
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         height: MediaQuery.of(context).size.height,
         child: Column(

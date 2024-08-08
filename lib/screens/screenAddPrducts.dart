@@ -52,61 +52,128 @@ class _ScreenaddprductsState extends State<Screenaddprducts> {
       appBar: AppBar(
         title: const Text('Agregar Producto'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
+      body: Container(
+        width: double.infinity,
+        height: MediaQuery.of(context).size.height,
+        padding: const EdgeInsets.only(
+          left: 30.0,
+          right: 30.0,
+        ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
-              controller: nombreProductoController,
-              decoration: const InputDecoration(
-                labelText: 'Ingrese Nombre de Producto',
+            SizedBox(
+              width: 400.0,
+              child: TextField(
+                controller: nombreProductoController,
+                textAlign: TextAlign.center,
+                decoration: const InputDecoration(
+                  labelText: 'Ingrese el Nombre del Producto:',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.black,
+                      width: 1.0,
+                      style: BorderStyle.solid,
+                    ),
+                  ),
+                ),
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 34,
             ),
-            TextField(
-              controller: descripcionProductoController,
-              decoration: const InputDecoration(
-                labelText: 'Ingrese la Descripcion de Producto',
+            SizedBox(
+              width: 400.0,
+              child: TextField(
+                controller: descripcionProductoController,
+                textAlign: TextAlign.center,
+                decoration: const InputDecoration(
+                  labelText: 'Ingrese la Descripción del Producto:',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.black,
+                      width: 1.0,
+                      style: BorderStyle.solid,
+                    ),
+                  ),
+                ),
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 34,
             ),
-            TextField(
-              controller: cantidadProductoController,
-              keyboardType: TextInputType.number,
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-              decoration: const InputDecoration(
-                labelText: 'Ingrese la Cantidad del Producto',
+            SizedBox(
+              width: 400.0,
+              child: TextField(
+                controller: cantidadProductoController,
+                keyboardType: TextInputType.number,
+                textAlign: TextAlign.center,
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                ],
+                decoration: const InputDecoration(
+                  labelText: 'Ingrese la Cantidad del Producto:',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.black,
+                      width: 1.0,
+                      style: BorderStyle.solid,
+                    ),
+                  ),
+                ),
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 34,
             ),
-            TextField(
-              controller: precioProductoController,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                labelText: 'Ingrese el Precio del Producto',
+            SizedBox(
+              width: 400.0,
+              child: TextField(
+                controller: precioProductoController,
+                keyboardType: TextInputType.number,
+                textAlign: TextAlign.center,
+                decoration: const InputDecoration(
+                  labelText: 'Ingrese el Precio del Producto:',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.black,
+                      width: 1.0,
+                      style: BorderStyle.solid,
+                    ),
+                  ),
+                ),
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*$'))
+                ],
               ),
-              inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*$'))
-              ],
             ),
             const SizedBox(
-              height: 10,
+              height: 34,
             ),
             ElevatedButton(
+              style: const ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(
+                  Colors.grey,
+                ),
+                padding: WidgetStatePropertyAll(
+                  EdgeInsets.only(
+                    top: 20,
+                    right: 45,
+                    left: 45,
+                    bottom: 20,
+                  ),
+                ),
+              ),
               onPressed: () {
                 addProducto();
               },
-              child: const Text('Agregar Producto'),
+              child: const Text(
+                'Agregar Producto',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ],
         ),
